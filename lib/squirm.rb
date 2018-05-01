@@ -24,12 +24,12 @@ Squirm comes with a very simple, threadsafe connection pool.
 === Performing queries
 
 The `Squirm.use` method will check out a connection and yield it to the block
-you pass. The connection is a vanilla instance of PGConn, so all of Postgres's
+you pass. The connection is a vanilla instance of PG::Connection, so all of Postgres's
 functionality is directly exposed to you without any sugar or intermediaries.
 
 When the block returns, the connection is checked back into the pool.
 
-    # conn is a PGconn instance
+    # conn is a PG::Connection instance
     Squirm.use do |conn|
       conn.exec "SELECT * FROM users" do |result|
         puts result.first

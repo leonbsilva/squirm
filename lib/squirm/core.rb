@@ -20,7 +20,7 @@ module Squirm
       pool_size = options.delete(:pool_size) || 1
       @pool     = Squirm::Pool.new(timeout)
       pool_size.times do
-        conn = PGconn.open(options)
+        conn = PG::Connection.open(options)
         yield conn if block_given?
         @pool.checkin conn
       end
@@ -83,7 +83,7 @@ module Squirm
     # Quotes an SQL identifier.
     # @return [String] The identifier.
     def quote_ident(*args)
-      PGconn.quote_ident(*args.map(&:to_s))
+      PG::Connection.quote_ident(*args.map(&:to_s))
     end
   end
 end

@@ -107,7 +107,7 @@ describe Squirm do
     it "should set the connection to a transaction state" do
       Squirm.connect $squirm_test_connection
       Squirm.transaction do |conn|
-        assert_equal PGconn::PQTRANS_INTRANS, conn.transaction_status
+        assert_equal PG::Connection::PQTRANS_INTRANS, conn.transaction_status
       end
     end
   end

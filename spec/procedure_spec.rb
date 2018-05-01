@@ -103,7 +103,7 @@ describe Squirm::Procedure do
 
     it "should return a proc which calls the procedure" do
       proc = Squirm::Procedure.new("date", args: "abstime", schema: "pg_catalog").load.to_proc
-      proc.call("Jan 1, 2011") {|result| assert_instance_of PGresult, result}
+      proc.call("Jan 1, 2011") {|result| assert_instance_of PG::Result, result}
     end
   end
 
@@ -113,7 +113,7 @@ describe Squirm::Procedure do
 
     it "should yield the result to a block if given" do
       proc = Squirm::Procedure.new("date", args: "abstime", schema: "pg_catalog").load
-      proc.call("Jan 1, 2011") {|result| assert_instance_of PGresult, result}
+      proc.call("Jan 1, 2011") {|result| assert_instance_of PG::Result, result}
     end
 
     it "should return the value of a single-row result" do
